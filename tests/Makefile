@@ -369,3 +369,12 @@ test-mem32: lz4c32 datagen
 # unfortunately, valgrind doesn't seem to work with non-native binary...
 
 endif
+
+test-deprecated-gpp1y: $(LZ4DIR)/lz4.o $(LZ4DIR)/lz4hc.o $(LZ4DIR)/xxhash.o test-deprecated.cpp.cpp
+	$(CC) $(CPPFLAGS) $(LDFLAGS) -std=gnu++1y -Werror -Wno-error=deprecated-declarations $^ -o $@$(EXT)
+test-deprecated-gpp1z: $(LZ4DIR)/lz4.o $(LZ4DIR)/lz4hc.o $(LZ4DIR)/xxhash.o test-deprecated.cpp.cpp
+	$(CC) $(CPPFLAGS) $(LDFLAGS) -std=gnu++1z -Werror -Wno-error=deprecated-declarations $^ -o $@$(EXT)
+test-deprecated-cpp1y: $(LZ4DIR)/lz4.o $(LZ4DIR)/lz4hc.o $(LZ4DIR)/xxhash.o test-deprecated.cpp.cpp
+	$(CC) $(CPPFLAGS) $(LDFLAGS) -std=c++1y -Werror -Wno-error=deprecated-declarations $^ -o $@$(EXT)
+test-deprecated-cpp1z: $(LZ4DIR)/lz4.o $(LZ4DIR)/lz4hc.o $(LZ4DIR)/xxhash.o test-deprecated.cpp.cpp
+	$(CC) $(CPPFLAGS) $(LDFLAGS) -std=c++1z -Werror -Wno-error=deprecated-declarations $^ -o $@$(EXT)
